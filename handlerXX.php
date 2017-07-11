@@ -119,6 +119,9 @@ class Shop_Payment_System_HandlerXX extends Shop_Payment_System_Handler
     {
         parent::_processOrder();
 
+        // Установка тем отправляемых писем
+        $this->setMailSubjects();
+
         // Установка XSL-шаблонов в соответствии с настройками в узле структуры
         $this->setXSLs();
 
@@ -199,6 +202,7 @@ class Shop_Payment_System_HandlerXX extends Shop_Payment_System_Handler
                             $oShop_Order->system_information = "Заказ оплачен через сервис Яндекс.Касса.\n";
                             $oShop_Order->paid();
 
+                            $this->setMailSubjects();
                             $this->setXSLs();
                             $this->send();
                         }
